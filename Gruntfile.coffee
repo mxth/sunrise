@@ -9,7 +9,7 @@ module.exports = (grunt) ->
         noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
     switch mode
       when 'dev'
-        global.options.process = (content) -> content.replace /@dev{([\s\S]*)}/, (match, body) -> body.trim()
+        global.options.process = (content) -> content.replace /@dev{([^}]*)}/, (match, body) -> body.trim()
       when 'prod'
         global.options.process = (content) -> content.replace /@dev{([\s\S]*)}/, ''
     global

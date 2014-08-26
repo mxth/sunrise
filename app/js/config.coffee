@@ -1,23 +1,27 @@
 require.config
   baseUrl: '.'
+  packages: ['js/main']
   paths:
-    pixi: 'lib/pixi.dev'
-    underscore: 'lib/underscore'
-    requireLib: 'lib/require'
+    angular: 'bower_components/angular/angular'
+    bootstrap: 'bower_components/angular-bootstrap/ui-bootstrap-tpls'
+    router: 'bower_components/angular-ui-router/release/angular-ui-router'
+    text: 'bower_components/requirejs-text/text'
+    tpl: 'js/lib/tpl'
+    requireLib: 'bower_components/requirejs/require'
 
   shim:
-    pixi:
-      exports: 'PIXI'
-    underscore:
-      exports: '_'
+    angular:
+      exports: 'angular'
+    bootstrap:
+      deps: ['angular']
+    router:
+      deps: ['angular']
 
   modules: [
-    name: 'pairs/main'
+    name: 'js/main'
     include: ['requireLib']
   ]
 
   optimize: 'uglify2'
 
   generateSourceMaps: false
-
-
