@@ -49,6 +49,8 @@ module.exports = (grunt) ->
         ,
           expand: true, cwd: 'distTemp', src: ['js/boot.js'], dest: 'dist/'
         ]
+      ghPages:
+        expand: true, cwd: 'dist', src: ['**'], dest: './', options: noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
 
     requirejs:
       dist:
@@ -67,3 +69,4 @@ module.exports = (grunt) ->
   grunt.registerTask 'compile', ['clean:target', 'copy:compile', 'coffee:compile']
   grunt.registerTask 'compileDist', ['clean:target', 'copy:distTemp', 'coffee:compile']
   grunt.registerTask 'dist', ['compileDist', 'requirejs', 'copy:dist', 'clean:distTemp']
+  grunt.registerTask 'ghPages', ['dist', 'copy:ghPages']
