@@ -32,18 +32,30 @@ module.exports = (grunt) ->
 
     clean:
       target: 'target'
-      dist: ['dist/lib', 'dist/build.txt', 'dist/config.js']
+      distTemp: 'distTemp'
 
     copy:
       compile: getCopyConfig 'dev'
-      dist: getCopyConfig 'prod'
+      distTemp: getCopyConfig 'prod'
+      dist:
+        files: [
+          expand: true, cwd: 'distTemp', src: ['bower_components/bootstrap-css-only/fonts/**'], dest: 'dist/', options: noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
+        ,
+          expand: true, cwd: 'distTemp', src: ['img/**'], dest: 'dist/', options: noProcess: ['**/*.{png,gif,jpg,ico,svg,ttf,eot,woff}']
+        ,
+          expand: true, cwd: 'distTemp', src: ['index.html'], dest: 'dist/'
+        ,
+          expand: true, cwd: 'distTemp', src: ['css/**'], dest: 'dist/'
+        ,
+          expand: true, cwd: 'distTemp', src: ['js/boot.js'], dest: 'dist/'
+        ]
 
     requirejs:
       dist:
         options:
-          mainConfigFile: 'target/config.js'
+          mainConfigFile: 'target/js/config.js'
           appDir: 'target'
-          dir: 'dist'
+          dir: 'distTemp'
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -53,5 +65,5 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'default', ['compile', 'watch:compile']
   grunt.registerTask 'compile', ['clean:target', 'copy:compile', 'coffee:compile']
-  grunt.registerTask 'compileDist', ['clean:target', 'copy:dist', 'coffee:compile']
-  grunt.registerTask 'dist', ['compileDist', 'requirejs', 'clean:dist']
+  grunt.registerTask 'compileDist', ['clean:target', 'copy:distTemp', 'coffee:compile']
+  grunt.registerTask 'dist', ['compileDist', 'requirejs', 'copy:dist', 'clean:distTemp']

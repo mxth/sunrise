@@ -8,6 +8,7 @@ require.config
     text: 'bower_components/requirejs-text/text'
     tpl: 'js/common/tpl'
     requireLib: 'bower_components/requirejs/require'
+    config: 'js/config'
 
   shim:
     angular:
@@ -18,10 +19,10 @@ require.config
       deps: ['angular']
 
   modules: [
-    name: 'js/main'
-    include: ['requireLib']
+    name: 'js/boot'
+    include: ['requireLib', 'config']
   ]
 
-  optimize: 'uglify2'
+  optimize: 'none'
 
   generateSourceMaps: false
