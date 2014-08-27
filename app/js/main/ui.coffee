@@ -20,6 +20,7 @@ define [
         views:
           'root':
             template: homeTpl
+            controller: 'HomeCtrl as home'
       .state 'about',
         url: '/about'
         views:
