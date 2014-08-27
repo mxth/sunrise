@@ -23,6 +23,6 @@ require.config
     include: ['requireLib', 'config']
   ]
 
-  optimize: 'none'
+  optimize: 'uglify2'
 
   generateSourceMaps: false
