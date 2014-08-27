@@ -6,7 +6,7 @@ require.config
     bootstrap: 'bower_components/angular-bootstrap/ui-bootstrap-tpls'
     router: 'bower_components/angular-ui-router/release/angular-ui-router'
     text: 'bower_components/requirejs-text/text'
-    tpl: 'js/lib/tpl'
+    tpl: 'js/common/tpl'
     requireLib: 'bower_components/requirejs/require'
 
   shim:
