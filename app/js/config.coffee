@@ -24,5 +24,6 @@ require.config
   ]
 
   optimize: 'uglify2'
-
+  optimizeCss: 'standard.keepLines'
   generateSourceMaps: false
+  preserveLicenseComments: false
